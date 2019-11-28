@@ -1,0 +1,80 @@
+{% extends 'landing/base.html' %}
+{% load staticfiles %}
+{% block content %}
+        {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+        {% endif %}
+
+<!--- Jumbotron -->
+
+
+    <div class="row jumbotron">
+        <div class="cols-xs 12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
+            <p class="lead">
+                Thousand of satisfied driver and great review from the costumer. lorem ipsum
+                Thousand of satisfied driver and great review from the costumer.lorem ipsum
+            </p>
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2">
+            <a href="#">
+                <button type="button" class="btn btn-outline-primary">
+                    SEARCH
+                </button>
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-sm"></div>
+        <div class="col-sm-9 mystyle "></div>
+        <div class="col-sm-2 mystyle"></div>
+
+
+    </div>
+
+    <!--- Cards -->
+
+    <div class="container padding">
+            <div class="row padding">
+
+                {% for post in posts %}
+                <div class="col-md-3">
+
+                    <div class="card">
+                        <img class="card-img-top" src="{{ post.img.url }}">
+                        <div class="card-body">
+                            <a href ="{%url 'post-detail' post.id %}">
+                                <h4 class="card-title">{{post.client_name}}</h4>
+                            </a>
+                            <p>{{post.address}}<p>
+                            <a href="#" class="btn btn-outline-warning">Order Here</a>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
+
+</body>
+
+</html>
