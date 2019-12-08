@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
+    'social_django',
+
 ]
 
 MIDDLEWARE = [
@@ -50,7 +54,18 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'social_django.middleware.SocialAuthExceptionMiddleware',  # <--
+
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.github.GithubOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+    'social_core.backends.facebook.FacebookOAuth2',
+
+)
 
 ROOT_URLCONF = 'guruer.urls'
 
@@ -65,6 +80,11 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'social_django.context_processors.backends',  # <-- for social login
+                'social_django.context_processors.login_redirect', # <-- for social redirect
+
+
             ],
         },
     },
@@ -136,3 +156,16 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_REDIRECT_URL = 'landing-home'
 LOGIN_URL = 'login'
+
+CRISPY_TEMPLATE_PACK="bootstrap4"
+SITE_ID = 1
+
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '31279655121-bru0dgm9l28cperasqh0djcto8er6ko1.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "j5ySzJ-kDKpcMKeGKbWOwJfc"
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+#31279655121-bru0dgm9l28cperasqh0djcto8er6ko1.apps.googleusercontent.com
+#31279655121-bru0dgm9l28cperasqh0djcto8er6ko1.apps.googleusercontent.com
+
+#j5ySzJ-kDKpcMKeGKbWOwJfc
