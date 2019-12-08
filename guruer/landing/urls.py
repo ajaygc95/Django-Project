@@ -5,11 +5,13 @@ from .views import (PostListView,
                     PostDetailView,
                     PostCreateView,
                     PostUpdateView,
-                    PostDeleteView
+                    PostDeleteView,
+                    UserPostListView
                     )
 
 urlpatterns = [
     path('home/', PostListView.as_view(), name='landing-home'),
+    path('user/<str:username>', UserPostListView.as_view(), name='user-posts'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
     path('detail/new/', PostCreateView.as_view(), name='post-create'),
     path('post/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),
@@ -18,4 +20,8 @@ urlpatterns = [
     path('sidebar/', views.sidebar, name='landing-sidebar'),
     path('base/', views.base, name='landing-base'),
     path('toggler/', views.toggler, name='landing-toggler'),
+
+    path('social/', include('social_django.urls', namespace='social')),
+
 ]
+

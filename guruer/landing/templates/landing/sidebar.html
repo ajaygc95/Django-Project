@@ -1,88 +1,62 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
 
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script>
 
-    <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+        var searchInput = 'search_input';
 
-    {% if title %}
-        <title>Django Blog - {{ title }}</title>
-    {% else %}
-        <title>Django Blog</title>
-    {% endif %}
-</head>
+    $(document).ready(function () {
+        var autocomplete;
+        autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+            types: ['geocode'],
+        });
+
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            var near_place = autocomplete.getPlace();
+            document.getElementById('loc_lat').value = near_place.geometry.location.lat();
+            document.getElementById('loc_long').value = near_place.geometry.location.lng();
+
+            document.getElementById('latitude_view').innerHTML = near_place.geometry.location.lat();
+            document.getElementById('longitude_view').innerHTML = near_place.geometry.location.lng();
+        });
+    });
+
+
+
+    $(document).on('change', '#'+searchInput, function () {
+    document.getElementById('latitude_input').value = '';
+    document.getElementById('longitude_input').value = '';
+
+    document.getElementById('latitude_view').innerHTML = '';
+    document.getElementById('longitude_view').innerHTML = '';
+});
+
+
+    var autocomplete;
+autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+    types: ['geocode'],
+    componentRestrictions: {
+        country: "USA"
+    }
+});
+
+
+</script>
+
+    </head>
+
 <body>
-<header class="site-header">
-    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+        <!-- Autocomplete location search input -->
+    <div class="form-group has-search">
 
-        <div class="container-fluid">
-            <a class="navbar-brand" href = "{% url 'landing-sidebar' %}">
-                <img src="{% static 'images/logo2.png' %}">
-            </a>
+        <input type="text" class="form-control" id="search_input" placeholder="Enter your address.. " />
+        <input type="hidden" id="loc_lat" />
+        <input type="hidden" id="loc_long" />
+    </div>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-                <span class="navbar-toggler-icon"></span>
 
-            </button>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyBbXCIoip4xlHIcyQ6kHbKO9j4XoDFILTM"></script>
+    <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbXCIoip4xlHIcyQ6kHbKO9j4XoDFILTM&libraries=places"></script>-->
 
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
 
-                 {% if user.is_authenticated %}
-                    <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
-                    <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
-                     <li class="nav-item">
-
-                </li>
-                  {% else %}
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'landing-landing' %}">Home</a>
-                </li>
-                    <li class="nav-item">
-                    <a href="{% url 'register' %}"><button type="button" class="btn btn-outline-primary mr-2">Register</button></a>
-                </li>
-                <li class="nav-item">
-                    <a href="{% url 'login' %}"><button type="button" class="btn btn-outline-success">Sign In</button></a>
-                </li>
-                  {% endif %}
-            </ul>
-        </div>
-    </nav>
-</header>
-    <main role="main" class="container">
-      <div class="row">
-        <div class="col-md-9">
-          {% if messages %}
-            {% for message in messages %}
-              <div class="alert alert-{{ message.tags }}">
-                {{ message }}
-              </div>
-            {% endfor %}
-          {% endif %}
-          {% block content %}{% endblock %}
-        </div>
-        <div class="col-md-3">
-          <div class="content-section">
-            <h3>Our Sidebar</h3>
-
-            </p>
-          </div>
-        </div>
-      </div>
-    </main>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
-</html>

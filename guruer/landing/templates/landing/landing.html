@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Complete Bootstrap 4 Website Layout</title>
+	<title>BoozeCart</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
@@ -33,16 +33,17 @@
         <ul class="navbar-nav ml-auto">
 
             <li class="nav-item">
-                <a  href="{% url 'register' %}"><button type="button" class="btn btn-outline-primary mr-2 ml-2">Register</button></a>
+                <a  href="{% url 'register' %}"><button type="button" class="btn btn-outline-primary">Register </button></a>
             </li>
             <li class="nav-item">
-                <a  href="{% url 'login' %}"><button type="button" class="btn btn-outline-success">Sign In</button></a>
+                <a  href="{% url 'login' %}"><button type="button" class="btn btn-success">Sign In </button></a>
             </li>
 
         </ul>
 
     </div>
 
+    </div>
 
 </nav>
 
@@ -52,32 +53,35 @@
 <!--- Image Slider -->
 
 <div id="slides" class="carousel slide" data-ride="carousel">
-    <ul class="carousel-indicators">
-        <li data-target="#slides" data-slide-to="0" class="active"></li>
-        <li data-target="#slides" data-slide-to="1"></li>
-        <li data-target="#slides" data-slide-to="2"></li>
-
-    </ul>
-
     <div class="carousel-inner">
         <div class="carousel-item active">
 
-            <img src="{% static 'images/destination_1.jpg' %}">
+            <img src="{% static 'images/background.png' %}">
             <div class="carousel-caption">
-                <h1 class="display-2">Boozecart</h1>
-                <h3>Drinking made more easier</h3>
-                <button type="button" class="btn btn-success btn-lg">Sign up</button>
-                <button type="button" class="btn btn-primary btn-lg">Login</button>
+                <!--<h1 class="display-2">Boozecart</h1>-->
+                <!--<h3>Drinking made more easier</h3>-->
+                <!--<button type="button" class="btn btn-success btn-lg">Sign up</button>-->
+                <!--<button type="button" class="btn btn-primary btn-lg">Login</button>-->
+
+
+
+
+            <!-- Autocomplete location search input -->
+            <div class="form-group has-search">
+
+                <input type="text" class="form-control" id="search_input" placeholder="Enter your Delivery Address.. " />
+                <input type="hidden" id="loc_lat" />
+                <input type="hidden" id="loc_long" />
+            </div>
+
+            <button type="button" class="btn btn-warning btn-lg">Search</button>
 
 
             </div>
+
+
         </div>
-        <div class="carousel-item">
-            <img src="{% static 'images/destination_3.jpg' %}">
-        </div>
-        <div class="carousel-item">
-             <img src="{% static 'images/destination_5.jpg' %}">
-        </div>
+
 
     </div>
 </div>
@@ -89,16 +93,18 @@
     <div class="row jumbotron">
         <div class="cols-xs 12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
             <p class="lead">
-                Thousand of satisfied driver and great review from the costumer. lorem ipsum
-                Thousand of satisfied driver and great review from the costumer.lorem ipsum
+                Order Beer, Wine and alcohol and food from your beloved store in a way never done before. We are the one to guarantee your delivery in time.
             </p>
 
         </div>
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2">
             <a href="#">
-                <button type="button" class="btn btn-outline-primary">
-                    SEARCH
-                </button>
+                 <a  href="{% url 'login' %}">
+                    <button type="button" class="btn btn-danger">
+                        Sign Up
+                    </button>
+                 </a>
+
             </a>
 
         </div>
@@ -246,7 +252,7 @@
 
 <!--- Cards -->
 
-<div class="container-fluid padding">
+<div class="container-fluid padding ">
     <div class="row padding">
 
         <div class="col-md-4">
@@ -407,6 +413,51 @@
 </footer>
 
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script>
+
+            var searchInput = 'search_input';
+
+        $(document).ready(function () {
+            var autocomplete;
+            autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+                types: ['geocode'],
+            });
+
+            google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                var near_place = autocomplete.getPlace();
+                document.getElementById('loc_lat').value = near_place.geometry.location.lat();
+                document.getElementById('loc_long').value = near_place.geometry.location.lng();
+
+                document.getElementById('latitude_view').innerHTML = near_place.geometry.location.lat();
+                document.getElementById('longitude_view').innerHTML = near_place.geometry.location.lng();
+            });
+        });
+
+
+
+        $(document).on('change', '#'+searchInput, function () {
+        document.getElementById('latitude_input').value = '';
+        document.getElementById('longitude_input').value = '';
+
+        document.getElementById('latitude_view').innerHTML = '';
+        document.getElementById('longitude_view').innerHTML = '';
+    });
+
+
+        var autocomplete;
+    autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+        types: ['geocode'],
+        componentRestrictions: {
+            country: "USA"
+        }
+    });
+
+
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyBbXCIoip4xlHIcyQ6kHbKO9j4XoDFILTM"></script>
 
 
 

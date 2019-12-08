@@ -1,1 +1,21 @@
-hello worlds
+{% extends 'landing/base.html' %}
+{% load staticfiles %}
+{% block content %}
+ <h1>Posts by {{view.kwargs.username}} {{page_obj.paginator.count}} </h1>
+    {% for post in posts %}
+
+
+    <table class="table">
+        <tr class="table-active">
+        <tr class="table-primary">{{post.user}}</tr>
+          <th scope="col">{{post.client_name}}</th>
+          <th scope="col">{{post.date}}</th>
+
+
+    </tr>
+
+
+    </table>
+    {% endfor %}
+
+{% endblock %}

@@ -1,6 +1,7 @@
-body{
-    background: auto;
-}
+	body {
+		background: #dfe7e9;
+		font-family: 'Roboto', sans-serif;
+	}
 
 .mystyle{
     background:yellow;
