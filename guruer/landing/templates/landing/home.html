@@ -1,5 +1,10 @@
 {% extends 'landing/base.html' %}
 {% load staticfiles %}
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'landing/home.css' %}">
+{% endblock %}
+
+
 {% block content %}
         {% if messages %}
             {% for message in messages %}
@@ -11,56 +16,50 @@
 
 <!--- Jumbotron -->
 
+<div class="row jumbotron">
+    <div class="cols-xs 12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
+       {% for post in posts %}
+        <img class="rounded-circle" height="40" src="{{ post.author.profile.image.url }}">
+{%endfor%}
+    </div>
 
-    <div class="row jumbotron">
-        <div class="cols-xs 12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
-            <p class="lead">
-                Thousand of satisfied driver and great review from the costumer. lorem ipsum
-                Thousand of satisfied driver and great review from the costumer.lorem ipsum
-            </p>
-
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2">
-            <a href="#">
-                <button type="button" class="btn btn-outline-primary">
-                    SEARCH
-                </button>
-            </a>
-
-        </div>
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2">
+        <a href="#">
+            <button type="button" class="btn btn-outline-primary">
+                SEARCH
+            </button>
+        </a>
 
     </div>
 
+</div>
 
+<!--- Cards -->
 
+<div class="container padding">
+        <div class="row padding">
 
-    <!--- Cards -->
+            {% for post in posts %}
+            <div class="col-md-3">
 
+                <div class="card">
+                    <img class="card-img-top" src="{{ post.img.url }}" height="200" width="200">
+                    <div class="card-body">
+                        <!--<a href ="{%url 'post-detail' post.slug %}"> -->
+                        <a href ="{{post.get_absolute_url}}">
+                            <h4 class="card-title">{{post.client_name}}</h4>
+                        </a>
+                        <p>{{post.address}}<p>
+                        <a href="#" class="btn btn-danger">Order Here</a>
 
-
-    <div class="container padding">
-            <div class="row padding">
-
-                {% for post in posts %}
-                <div class="col-md-3">
-
-                    <div class="card">
-                        <img class="card-img-top" src="{{ post.img.url }}" height="200" width="200">
-                        <div class="card-body">
-                            <a href ="{%url 'post-detail' post.user.id %}">
-                                <h4 class="card-title">{{post.client_name}}</h4>
-                            </a>
-                            <p>{{post.address}}<p>
-                            <a href="#" class="btn btn-danger">Order Here</a>
-
-                        </div>
                     </div>
                 </div>
+            </div>
 
 
-                {% endfor %}
-        </div>
+            {% endfor %}
     </div>
+</div>
 
 {% endblock %}
 

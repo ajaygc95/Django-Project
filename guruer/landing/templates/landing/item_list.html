@@ -1,0 +1,93 @@
+{% extends 'landing/base.html' %}
+{% load staticfiles %}
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'landing/user_post.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container">
+
+    <h1>Here are the list of items </h1>
+
+    <div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Total Item Price</th>
+
+      </tr>
+    </thead>
+    <tbody>
+
+    {% for order_item in object.items.all %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{order_item.item.client_name}}</td>
+        <td>${{order_item.item.price|floatformat:2}}</td>
+        <td>
+            <a href="{% url 'remove-single-item-from-cart' order_item.item.slug%}">
+                <i class="fas fa-minus mr-2"></i>
+            </a>
+            {{order_item.quantity}}
+          <a href="{% url 'add-to-cart' order_item.item.slug%}">
+                <i class="fas fa-plus ml-2"></i>
+          </a>
+        </td>
+        <td>${{order_item.get_total_item_price}}</td>
+         <td>
+            <a href="{% url 'remove-from-cart' order_item.item.slug%}">
+                <i class="fas fa-trash"></i>
+            </a>
+
+      </tr>
+        {% empty %}
+    <tr>
+        <td colspan="r">Your Cart is empty</td>
+    </tr>
+    <tr>
+             <td colspan="2"></td>
+            <td colspan="5"> <a class="mr-2 align-center" href="{%url 'landing-home' %}">{{ object.author }}Continue Shopping</a>
+    </td>
+
+    </tr>
+
+    {% endfor %}
+
+    {% if object.get_total%}
+    <tr>
+        <td colspan="3"></td>
+
+        <td colspan=""><b>Order Total</b></td>
+        <td colspan="4"><b>${{object.get_total}}</b></td>
+    </tr>
+    <tr>
+        <td colspan="5"><a class="btn btn-warning float-right mr-3" href="{% url 'item-checkout'%}">Proceed to Checkout </a></td>
+    </td>
+    </tr>
+    <tr>
+             <td colspan="2"></td>
+            <td colspan="5"> <a class="mr-2 align-center" href="{%url 'landing-home' %}">Continue Shopping</a>
+    </td>
+
+    </tr>
+    {% endif %}
+    </tbody>
+  </table>
+</div>
+
+    </div>
+
+
+
+
+
+
+
+
+{% endblock %}

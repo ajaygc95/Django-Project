@@ -1,0 +1,44 @@
+{% extends 'landing/base.html' %}
+{% load staticfiles %}
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'landing/user_post.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <h1 class="mb-3">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
+    <hr>
+{% for post in posts %}
+{% if forloop.first %}
+
+    <img class="rounded-circle" height="40" src="{{ post.author.profile.image.url }}">
+
+    {% endif %}
+
+{%endfor%}
+
+{% for post in posts %}
+
+        <article class="media content-section">
+
+          <div class="media-body">
+            <div class="article-metadata">
+                <h2><a class="article-title" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a></h2>
+              <small class="text-muted">{{ post.dated|date:"F d, Y" }}</small>
+            </div>
+            <a class="mr-2 " href="{% url 'post-detail' post.slug %}">{{ post.client_name }}</a>
+            <p class="article-content">{{ post.content }}</p>
+              <img class="img mb-2" height="200" width="200" src="{{ post.img.url }}">
+              <h5>here goes the desceiption. Click add to cart to add item to cart so that you can check out
+
+            <div>
+                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{{ object.get_add_to_cart }}">Add To Cart</a>
+            </div>
+          </div>
+
+        </article>
+
+        <hr>
+    {% endfor %}
+
+{% endblock %}

@@ -1,17 +1,21 @@
 {% load staticfiles %}
+{% load newcart_template_tags%}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Complete Bootstrap 4 Website Layout</title>
+	<title>BoozeCart</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'landing/base.css' %}">
+    {% block styles %}
+    {% endblock %}
+
 </head>
 <body>
 <!-- Navigation -->
@@ -32,9 +36,16 @@
         <ul class="navbar-nav ml-auto">
 
              {% if user.is_authenticated %}
+             <a class="btn btn-outline-success mr-5" href="{% url 'item-list' %}">
+
+                 <i class="fas fa-shopping-cart"></i>
+                <span>{{request.user|cart_item_count}}</span>
+             </a>
+
                 <a class="btn btn-warning mr-2" href="{% url 'post-create' %}">Add New Item</a>
                 <a class="btn btn-success mr-2" href="{% url 'profile' %}">Profile</a>
                 <a class="btn btn-danger " href="{% url 'logout' %}">Logout</a>
+
                  <li class="nav-item">
             </li>
               {% else %}
@@ -69,6 +80,18 @@
       </div>
     </main>
     </div>
-</body>
 
+
+
+</body>
+<script>
+
+    $(document).ready(function() {
+        // messages timeout for 10 sec
+        setTimeout(function() {
+            $('.alert').fadeOut('slow');
+        }, 2000); // <-- time in milliseconds, 1000 =  1 sec
+
+    });
+</script>
 </html>

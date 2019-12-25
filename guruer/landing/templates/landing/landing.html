@@ -20,7 +20,7 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
 
     <div class="container-fluid">
-        <a class="navbar-brand" href = "{% url 'landing-sidebar' %}">
+        <a class="navbar-brand order-md-center" href = "{% url 'landing-sidebar' %}">
             <img src="{% static 'images/logo2.png' %}">
         </a>
 
@@ -33,13 +33,18 @@
         <ul class="navbar-nav ml-auto">
 
             <li class="nav-item">
-                <a  href="{% url 'register' %}"><button type="button" class="btn btn-outline-primary">Register </button></a>
-            </li>
-            <li class="nav-item">
-                <a  href="{% url 'login' %}"><button type="button" class="btn btn-success">Sign In </button></a>
+                <a class="nav-link active" href="{%url 'login' %}">Login</a>
             </li>
 
+
+
+
         </ul>
+
+            <li class="nav-item">
+                <a  href="{% url 'register' %}"><button type="button" class="btn btn-outline-primary">Create account </button></a>
+            </li>
+
 
     </div>
 
@@ -56,7 +61,7 @@
     <div class="carousel-inner">
         <div class="carousel-item active">
 
-            <img src="{% static 'images/background.png' %}">
+            <img src="{% static 'images/booze.jpg' %}">
             <div class="carousel-caption">
                 <!--<h1 class="display-2">Boozecart</h1>-->
                 <!--<h3>Drinking made more easier</h3>-->
@@ -67,8 +72,10 @@
 
 
             <!-- Autocomplete location search input -->
-            <div class="form-group has-search">
 
+
+
+            <div class="form-group has-search">
                 <input type="text" class="form-control" id="search_input" placeholder="Enter your Delivery Address.. " />
                 <input type="hidden" id="loc_lat" />
                 <input type="hidden" id="loc_long" />
@@ -119,7 +126,7 @@
     <div class="row welcome text-center">
 
         <div class="col-12">
-            <h1 class="display-4">Built with Case</h1>
+            <h1 class="display-4">Order with ease</h1>
         </div>
         <hr>
         <div class="col-12">
@@ -143,7 +150,7 @@
         <div class="col-xs-12 col-sm-6 col-md-4">
             <i class="fas fa-beer"></i>
             <h3>BEER</h3>
-            <p>Just trying some html text here whater is the way of the something</p>
+            <p>Cool beer at your doorstep on Christmas or Cino de Mayo </p>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4">
@@ -168,9 +175,10 @@
 <div class="container-fluid padding">
     <div class="row padding">
         <div class="col-md-12 col-lg-6">
-            <h2> If you build it......</h2>
+            <h2> We deliver at office </h2>
             <p class="lead">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                I am not sure about your boss being mad tho...............<br>
+                and typesetting industry.
                   Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
                   when an unknown printer took a galley of type and scrambled it to make a type
 
@@ -205,7 +213,7 @@
 <figure>
     <div class="fixed-wrap">
         <div id="fixed">
-               <img src="{% static 'images/background2.png' %}">
+               <img src="{% static 'images/giphy.gif' %}">
         </div>
 
     </div>
@@ -243,7 +251,7 @@
 <div class="container-fluid padding">
     <div class="row welcome text-center">
         <div  class="col-12">
-            <h1 class="display-4">Our Pride partner</h1>
+            <h1 class="display-4">Our Proud partner</h1>
         </div>
         <hr>
     </div>
@@ -330,7 +338,7 @@
 
         </div>
         <div class="col-lg-6">
-             <img src="{% static 'images/background2.png' %}" class="img-fluid">
+             <img src="{% static 'images/giphy.gif' %}" class="img-fluid">
 
         </div>
 
@@ -347,7 +355,13 @@
     <div class="row text-center padding">
 
         <div class="col-12">
-            <h2>Connect</h2>
+            <div class="col-md-12">
+                     <h2>Connect</h2>
+                <hr class="light">
+
+            </div>
+
+
 
         </div>
         <div class="col-12 social padding">

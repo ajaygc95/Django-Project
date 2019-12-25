@@ -1,11 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
 
 html, body{
-
+    background: #dfe7e9;
     height: 100%;
     width: 100%;
-    font-family:'poppins', sans-serif;
+    font-family:'Roboto', sans-serif;
     color: #222;
+}
+.mynavbar {
+	text-align:center;
+}
+.mynavbar .nav {
+	float:none;
 }
 
 .navbar {
@@ -13,26 +19,34 @@ html, body{
     padding: .1rem;
 
 }
+
+li {
+text-decoration:none;
+list-style-type:none;
+}
 .navbar-nav li {
+
     padding-right: 20px;
 
 }
 
-.nav-link{
+nav .navbar-nav li a{
+
     font-size: 1.1em !important;
+    color:#28C50F !important ;
+
+}
+nav .navbar-nav li a:hover{
+
+    font-size:1.2em !important;
+   border-radius:5px;
+   color:#00FA9A !important;
+    border-radius:none;
+
+
 
 }
 
-.carousel-inner img {
-    width: 100%;
-    height: 576px;
-
-}
-
-.carousel-caption {
-    position:absolute;
-    top: 50%;
-}
 
 .navbar .btn-outline-primary {
     position: relative;
@@ -40,11 +54,12 @@ html, body{
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
     transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-    color: black;
+    color: white;
     border: none;
-    background:tomato;
+    background:#28C50F;
 
 }
+
 
 .navbar .btn-success {
 
@@ -60,13 +75,10 @@ html, body{
 
 }
 .navbar .btn-outline-primary:hover  {
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 
-    -webkit-transform: scale(1.25, 1.25);
-  transform: scale(1.25, 1.25);
-    color: black;
+    color: white;
     border: none;
-    background:tomato;
+    background:#28C50F;
 }
 
 .navbar .btn-success:hover  {
@@ -76,13 +88,28 @@ html, body{
   transform: scale(1.25, 1.25);
 }
 
+
+.carousel-inner img {
+    width: 100%;
+    height: 700px;
+
+}
+
+.carousel-caption {
+    position:absolute;
+    top: 50%;
+
+}
+
 .btn {
     position: relative;
     display: inline-block;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
     transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-
+    background:#28C50F;
+    color:white;
+    border:none;
     border-radius: 20px ;
 }
 .btn:hover {
@@ -90,10 +117,12 @@ html, body{
 
     -webkit-transform: scale(1.25, 1.25);
     transform: scale(1.25, 1.25);
+    color:#333;
 }
 
 
 #search_input{
+    border:1px white solid;
     border-radius:20px;
     width:50%;
     margin:auto;
@@ -102,36 +131,28 @@ html, body{
 
 #search_input:focus{
   outline: none;
-  box-shadow: 0 0 0 2px tomato;
+  box-shadow: 0 0 0 2px #28C50F;
 
 }
 
 
 .carousel-caption .btn {
-
-
     position: relative;
     display: inline-block;
-
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-
-    -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-
-    color: black;
+    color: white;
     border: none;
-    background:tomato;
+    background:#28C50F;
 }
 
 
 .carousel-caption .btn:hover {
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-
     -webkit-transform: scale(1.25, 1.25);
      transform: scale(1.25, 1.25);
     color: black;
     border: none;
-    background:tomato;
+    background:#28C50F;
 }
 
 .carousel-caption h1 {
@@ -149,13 +170,23 @@ html, body{
 .jumbotron {
     padding: 1rem;
     border-radius:0;
-
 }
 
 .padding {
+    padding-left: 2 rem;
     padding-bottom : 2rem;
 }
 
+.card{
+    background:#87B590;
+    border:none;
+
+}
+
+.card .btn {
+    background:#FFD100;
+    color:black;
+}
 .welcome {
     width: 75%;
     margin: auto;
@@ -163,7 +194,7 @@ html, body{
 }
 
 .welcome hr {
-    border-top: 2px solid red;
+    border-top: 2px solid #28C50F;
     margin-top: .3rem;
     width: 95%;
     margin-bottom: 1rem;
@@ -182,39 +213,59 @@ html, body{
     font-size:4.5rem;
     padding: 3rem;
 }
+a:hover{
+    text-decoration:none;
+}
 
 .fa-facebook{
-    color:#3b5998;
+    color:#28C50F;
 
 }
+
 .fa-twitter{
-    color:#300aced;
-
+    color:#28C50F;
 }
+
 .fa-youtube{
-    color:#bb0000;
+    color:#28C50F;
 
 }
+
 .fa-instagram {
-    color:#517fa8;
-
+    color:#28C50F;
 }
-
-.fa-facebook:hover,
-.fa-twitter:hover,
-.fa-youtube:hover,
+.fa-facebook:hover{
+    color: #3b5998;
+    text-decoration:none;
+}
+.fa-twitter:hover{
+    color:#00aced;
+    text-decoration:none;
+}
+.fa-youtube:hover{
+    color: #bb0000;
+    text-decoration:none;
+}
 .fa-instagram:hover {
-    color: #d5d5d5;
+    color:#ea4c89 ;
+    text-decoration:none;
 }
-
-
-
 
 .fa-beer {
+    position: relative;
+    display: inline-block;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
     color: #f28e1c;
     font-size: 4em;
 }
 
+.fa-beer:hover {
+    -webkit-transform: scale(1.25, 1.25);
+     transform: scale(1.25, 1.25);
+     border:none;
+    }
 .fa-address-card {
     color: green;
     font-size: 4em;
